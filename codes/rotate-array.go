@@ -38,7 +38,7 @@ package codes
 
 */
 
-func Rotate(nums []int, k int) {
+func rotate(nums []int, k int) {
 	l := len(nums)
 	k = k % l
 	for {
