@@ -1,0 +1,24 @@
+// protoc -I=. --go_out=. --go-grpc_out=. --go-grpc_opt=paths=source_relative --go_opt=paths=source_relative rbac.proto
+syntax = "proto3";
+package user.rbac.api;
+
+option go_package = "user/rbac/api";
+
+message User {
+  int64 id = 1;
+  optional string name = 2;
+}
+
+message PermissionReq {
+  User user = 1;
+  string permission = 2;
+}
+
+message PermissionResp {
+  string version = 1;
+  bool result = 2;
+}
+
+service Agent {
+  rpc HasPermission(PermissionReq) returns (stream PermissionResp);
+}
